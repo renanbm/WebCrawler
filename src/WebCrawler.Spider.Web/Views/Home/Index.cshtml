@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Web Crawler";
+}
+
+<div class="container" id="container-shadow">
+    <h2 id="crowlText">Please enter with a URL and press ENTER to start crawling:</h2>
+
+    <div id="urlDiv" class="input-group-lg center-block">
+        <input id="urlInput" type="text" class="form-control" aria-describedby="sizing-addon1" value="" />
+    </div>
+
+    <p id="crowledUrls" class="lead text-center"></p>
+</div>
+
+@section scripts {
+    <script>
+        $('#urlInput').keydown(function (e) {
+            var baseUrl = $('#urlInput').val();
+            if (e.which === 13 && baseUrl.length > 0) {
+                $('#urlDiv').hide();
+                $('#crowledUrls').html("crawling...");
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Spider/Post",
+                    data: { baseUrl: baseUrl }
+                }).done(function (data) {
+                    $('#crowledUrls').html(writeData(data));
+                    $('#crowlText').html("Crowled URLs:");
+                });
+            }
+        });
+
+        function writeData(data) {
+            if (!data) {
+                $('#crowlText').hide();
+                return "<br> Ocorreu um erro! Tente novamente.";
+            }
+
+            var printThis = "";
+            for (var i = 0; i < data.length; i++)
+                printThis += "<br>" + data[i];
+            return printThis;
+        }
+
+    </script>
+}
