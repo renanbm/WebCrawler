@@ -28,6 +28,8 @@ namespace WebCrawler.Spider.Application
             while (spider.SpiderData.Queue.Count != 0)
                 Parallel.ForEach(spider.SpiderData.Queue, itemQueue => { Task.Run(spider.CrawlPage).Wait(); });
 
+            _spiderRepository.UpdateAsync(spider.SpiderData);
+
             return spider.SpiderData.Crawled;
         }
     }
