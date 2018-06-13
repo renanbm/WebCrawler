@@ -32,14 +32,14 @@
         });
 
         function writeData(data) {
-            if (!data) {
+            if (!data.success) {
                 $('#crowlText').hide();
-                return "<br> Ocorreu um erro! Tente novamente.";
+                return "<br>" + data.errorMessage;
             }
 
             var printThis = "";
-            for (var i = 0; i < data.length; i++)
-                printThis += "<br>" + data[i];
+            for (var i = 0; i < data.retorno.length; i++)
+                printThis += "<br>" + data.retorno[i];
             return printThis;
         }
 

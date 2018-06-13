@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using WebCrawler.Spider.Application.Interfaces;
 
@@ -15,15 +14,16 @@ namespace WebCrawler.Spider.Web.Controllers
         }
 
         [HttpPost]
-        public IEnumerable<string> Post(string baseUrl)
+        public JsonResult Post(string baseUrl)
         {
             try
             {
-                return _spiderAppService.Crawl(baseUrl);
+                var retorno = _spiderAppService.Crawl(baseUrl);
+                return Json(new { success = true, retorno, validacao = true });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return null;
+                return Json(new { success = false, validacao = true, errorMessage = ex.Message });
             }
         }
     }

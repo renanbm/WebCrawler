@@ -2,7 +2,6 @@ using System.IO;
 using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WebCrawler.CrossCutting;
-using WebCrawler.Domain.Interfaces;
 using WebCrawler.Repository;
 using WebCrawler.Spider.Application;
 using WebCrawler.Spider.Application.Interfaces;
