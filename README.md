@@ -1,6 +1,6 @@
 # ASP.NET Core Web Crawler
 
-This is an open source, multi-threaded and stateless website crawler written in C# / ASP.NET Core.
+This is an open source, multi-threaded and stateless website crawler written in C# / ASP.NET Core, persisting in IBM's Cloudant NoSQL DB and configured for a Linux Docker image.
 
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/renanbm/webcrawler)
 
